@@ -1,12 +1,18 @@
 [{
     "modid": "${modid}",
     "name": "${modname}",
-    "description": "An example mod for Minecraft 1.12.2 with Forge",
+    "description": "Makes GregTech CEu and Hot or Not Plus compatible",
     "version": "${version}",
     "mcversion": "${mcversion}",
     "logoFile": "",
     "url": "",
-    "authorList": [],
+    "authorList": [
+        "MrKono"
+    ],
     "credits": "",
-    "dependencies": []
+    "dependencies": [
+        "mixinbooter",
+        "gregtech",
+        "hotornot"
+    ]
 }]
