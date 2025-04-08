@@ -1,0 +1,12 @@
+{
+  "package": "kono.hotornotgt.mixin",
+  "refmap": "mixins.hotornotgt.refmap.json",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "gregtech.MixinMetaPrefixItem"
+  ],
+  "client": [],
+  "server": []
+}
