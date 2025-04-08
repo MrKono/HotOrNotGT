@@ -19,12 +19,11 @@
  * FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package kono.hotornotgt.mixin.hotornot;
 
-import com.buuz135.hotornot.server.ServerTick;
 import org.spongepowered.asm.mixin.Mixin;
 
+import com.buuz135.hotornot.server.ServerTick;
+
 @Mixin(value = ServerTick.class, remap = false)
-public class ServerTickMixin {
-}
+public class ServerTickMixin {}
