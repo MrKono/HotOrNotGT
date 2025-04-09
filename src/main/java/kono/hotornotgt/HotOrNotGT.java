@@ -1,5 +1,6 @@
 package kono.hotornotgt;
 
+import com.llamalad7.mixinextras.utils.MixinInternals;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -23,7 +24,7 @@ import kono.hotornotgt.common.CommonProxy;
      version = Tags.VERSION,
      name = ModValues.modName,
      acceptedMinecraftVersions = "[1.12.2]",
-     dependencies = GTInternalTags.DEP_VERSION_STRING + "required-after:" + HotOrNot.MOD_ID + ";")
+     dependencies = "required-after:mixinbooter@[9.1,);" + GTInternalTags.DEP_VERSION_STRING + "required-after:" + HotOrNot.MOD_ID + ";")
 public class HotOrNotGT {
 
     public static final Logger LOGGER = LogManager.getLogger(ModValues.modId);
