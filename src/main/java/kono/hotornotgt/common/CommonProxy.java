@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import kono.hotornotgt.ModValues;
+import kono.hotornotgt.api.util.ModValues;
 
 @Mod.EventBusSubscriber(modid = ModValues.modId)
 public class CommonProxy {

@@ -1,4 +1,4 @@
-package kono.hotornotgt.mixin.gregtech;
+package kono.hotornotgt.mixin;
 
 import static com.buuz135.hotornot.server.ServerTick.damageProtectionItem;
 
@@ -20,28 +20,30 @@ import gregtech.api.damagesources.DamageSources;
 import gregtech.api.items.armor.ArmorMetaItem;
 import gregtech.api.items.materialitem.MetaPrefixItem;
 import gregtech.api.unification.material.Material;
+import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.ore.OrePrefix;
 
 @Mixin(value = MetaPrefixItem.class, remap = false)
-public class MixinMetaPrefixItem {
+public abstract class MixinMetaPrefixItem {
 
     @Final
     @Shadow
     private OrePrefix prefix;
 
+    /**
+     * method : onUpdate
+     */
     @Inject(
-            method = "onUpdate",
-            at = @At(
-                     value = "INVOKE",
-                     target = "Lnet/minecraft/entity/EntityLivingBase;getItemStackFromSlot(Lnet/minecraft/inventory/EntityEquipmentSlot;)Lnet/minecraft/item/ItemStack;",
-                     shift = At.Shift.AFTER),
+            method = "func_77663_a",
+            at = @At(value = "INVOKE",
+                     target = "Lgregtech/api/items/materialitem/MetaPrefixItem;getMaterial(Lnet/minecraft/item/ItemStack;)Lgregtech/api/unification/material/Material;"),
             cancellable = true)
     public void onUpdateMixin(ItemStack itemStack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected,
                               CallbackInfo ci) {
         EntityLivingBase entity = (EntityLivingBase) entityIn;
         MetaPrefixItem metaPrefixItem = (MetaPrefixItem) (Object) this;
         Material material = metaPrefixItem.getMaterial(itemStack);
-
+        if (material == null || !material.hasProperty(PropertyKey.BLAST)) return;
         float heatDamage = prefix.heatDamageFunction.apply(material.getBlastTemperature());
         ItemStack armor = entity.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
         if (!armor.isEmpty() && armor.getItem() instanceof ArmorMetaItem<?>) {
