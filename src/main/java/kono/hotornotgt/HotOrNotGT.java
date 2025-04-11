@@ -17,17 +17,19 @@ import com.buuz135.hotornot.HotOrNot;
 
 import gregtech.GTInternalTags;
 
+import kono.hotornotgt.api.util.ModValues;
 import kono.hotornotgt.common.CommonProxy;
 
 @Mod(modid = ModValues.modId,
      version = Tags.VERSION,
      name = ModValues.modName,
-     acceptedMinecraftVersions = "[1.12.2]",
-     dependencies = "required-after:mixinbooter@[9.1,);" + GTInternalTags.DEP_VERSION_STRING + "required-after:" +
-             HotOrNot.MOD_ID + ";")
+     acceptedMinecraftVersions = "[1.12, 1.12.2]",
+     dependencies = GTInternalTags.DEP_VERSION_STRING + "required-after:" + HotOrNot.MOD_ID + ";" +
+             "required-after:mixinbooter;")
+@Mod.EventBusSubscriber(modid = ModValues.modId)
 public class HotOrNotGT {
 
-    public static final Logger LOGGER = LogManager.getLogger(ModValues.modId);
+    public static final Logger logger = LogManager.getLogger(ModValues.modId);
 
     @SidedProxy(modId = ModValues.modId,
                 clientSide = "kono.hotornotgt.client.ClientProxy",
