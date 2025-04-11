@@ -78,12 +78,12 @@ jobs:
           github-draft: false
           github-prerelease: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
-#          curseforge-id: ${{ env.CURSEFORGE_PROJECT_ID }}
-#          curseforge-token: "${{ secrets.CURSEFORGE_API_KEY }}"
-#          curseforge-dependencies: |
-#            mixin-booter(required)
-#            gregtech-ce-unofficial(required)
-#            hot-or-not-plus(required)
+          curseforge-id: ${{ env.CURSEFORGE_PROJECT_ID }}
+          curseforge-token: "${{ secrets.CURSEFORGE_API_KEY }}"
+          curseforge-dependencies: |
+            mixin-booter(required)
+            gregtech-ce-unofficial(required)
+            hot-or-not-plus(required)
           files: |
             build/libs/!(*-@(dev|sources|javadoc)).jar
             build/libs/*-@(sources).jar
@@ -92,10 +92,10 @@ jobs:
           changelog: "Changelog is available [here](https://github.com/${{github.repository}}/blob/master/Changelog.md)"
           version: "${{ github.event.inputs.version }}"
           version-type: "${{ github.event.inputs.release_type }}"
-#          loaders: |
-#            forge
-#          game-versions: |
-#            1.12.2
-#          java: |
-#            8
-#          retry-attempts: 2
+          loaders: |
+            forge
+          game-versions: |
+            1.12.2
+          java: |
+            8
+          retry-attempts: 2
