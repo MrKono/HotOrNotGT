@@ -1,4 +1,7 @@
 # Changelog
+### 1.2.0-beta
+- **Add**: Add tooltip to NanoArmor and QuarkTechArmor
+---
 ### 1.1.0-beta
 - **Fix**: Hot or Not's items, such as Mitts, cannot prevent GTCEu's HotIngot damage.
 - **Add**: NanoArmor and QuarkTechArmor can protect the player from HotOrNot's effects. (Configurable)
