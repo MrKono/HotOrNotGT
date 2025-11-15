@@ -1,5 +1,6 @@
 package kono.hotornotgt;
 
+import com.cleanroommc.groovyscript.Tags;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -25,7 +26,7 @@ import kono.hotornotgt.common.CommonProxy;
      name = ModValues.modName,
      acceptedMinecraftVersions = "[1.12, 1.12.2]",
      dependencies = GTInternalTags.DEP_VERSION_STRING + "required-after:" + HotOrNot.MOD_ID + ";" +
-             "required-after:mixinbooter;")
+             "required-after:mixinbooter@[10.5,);")
 @Mod.EventBusSubscriber(modid = ModValues.modId)
 public class HotOrNotGT {
 
