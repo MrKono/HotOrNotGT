@@ -1,4 +1,7 @@
 # Changelog
+### 1.3.0-beta
+- Updated MixinBooter from v9.1 to v10.6
+---
 ### 1.2.0-beta
 - **Add**: Add tooltip to NanoArmor and QuarkTechArmor
 ---
