@@ -25,7 +25,7 @@ import kono.hotornotgt.common.CommonProxy;
      name = ModValues.modName,
      acceptedMinecraftVersions = "[1.12, 1.12.2]",
      dependencies = GTInternalTags.DEP_VERSION_STRING + "required-after:" + HotOrNot.MOD_ID + ";" +
-             "required-after:mixinbooter;")
+             "required-after:mixinbooter@[10.5,);")
 @Mod.EventBusSubscriber(modid = ModValues.modId)
 public class HotOrNotGT {
 
