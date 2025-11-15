@@ -1,6 +1,5 @@
 package kono.hotornotgt;
 
-import com.cleanroommc.groovyscript.Tags;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -15,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.buuz135.hotornot.HotOrNot;
+import com.cleanroommc.groovyscript.Tags;
 
 import gregtech.GTInternalTags;
 
