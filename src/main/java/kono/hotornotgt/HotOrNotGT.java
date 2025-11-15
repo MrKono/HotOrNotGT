@@ -14,7 +14,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.buuz135.hotornot.HotOrNot;
-import com.cleanroommc.groovyscript.Tags;
 
 import gregtech.GTInternalTags;
 
