@@ -1,0 +1,7 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "hotornotgt:items/tools/tongs",
+    "layer1": "hotornotgt:items/tools/tongs_base"
+  }
+}

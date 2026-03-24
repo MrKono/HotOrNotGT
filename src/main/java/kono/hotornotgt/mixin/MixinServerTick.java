@@ -37,6 +37,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.buuz135.hotornot.config.HotConfig;
 import com.buuz135.hotornot.server.ServerTick;
 
 import gregtech.api.capability.GregtechCapabilities;
@@ -44,6 +45,7 @@ import gregtech.api.capability.IElectricItem;
 import gregtech.common.ConfigHolder;
 
 import kono.hotornotgt.HotOtNotGTConfig;
+import kono.hotornotgt.common.items.HotOrNotGTToolItems;
 
 @Mixin(value = ServerTick.class, remap = false)
 public class MixinServerTick {
@@ -131,6 +133,12 @@ public class MixinServerTick {
                     });
                     cir.setReturnValue(true);
                 }
+            }
+            if (player.getHeldItemOffhand().isItemEqual(HotOrNotGTToolItems.TONGS.getRaw())) {
+                if (HotConfig.DURABILITY_MITTS != 0) {
+                    player.getHeldItemOffhand().damageItem(HotConfig.ITEM_DAMAGE, player);
+                }
+                cir.setReturnValue(true);
             }
         }
     }
