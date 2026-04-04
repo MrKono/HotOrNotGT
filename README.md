@@ -18,7 +18,7 @@ This mod makes [GregTech CEu](https://github.com/GregTechCEu/GregTech) and [Hot 
  - NanoArmor and QuarkTechArmor can protect the player from HotOrNot's effects. (Configurable)
  - Add GregTech's Tongs (Of course, electric ones too.)
 ## Credits
-- I modified some textures from [GregTech CE: Unofficial](https://github.com/GregTechCEu/GregTech) under [LGPL-3.0 License](https://github.com/GregTechCEu/GregTech/blob/master/LICENSE.
+- I modified some textures from [GregTech CE: Unofficial](https://github.com/GregTechCEu/GregTech) under [LGPL-3.0 License](https://github.com/GregTechCEu/GregTech/blob/master/LICENSE).
 - I modified some textures from [Hot or Not Plus](https://github.com/ACGaming/HotOrNotPlus) under MIT License (below)
 <details>
 <summary>MIT License</summary>
