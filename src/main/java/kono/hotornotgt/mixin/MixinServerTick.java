@@ -29,8 +29,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import gregtech.api.GTValues;
-import gregtech.api.items.toolitem.IGTTool;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -43,8 +41,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import com.buuz135.hotornot.config.HotConfig;
 import com.buuz135.hotornot.server.ServerTick;
 
+import gregtech.api.GTValues;
 import gregtech.api.capability.GregtechCapabilities;
 import gregtech.api.capability.IElectricItem;
+import gregtech.api.items.toolitem.IGTTool;
 import gregtech.common.ConfigHolder;
 
 import kono.hotornotgt.HotOtNotGTConfig;
@@ -179,5 +179,4 @@ public class MixinServerTick {
         }
         return false;
     }
-
 }

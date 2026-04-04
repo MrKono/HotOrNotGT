@@ -1,14 +1,16 @@
 package kono.hotornotgt.common.items;
 
-import gregtech.api.items.toolitem.behavior.IToolBehavior;
+import java.util.List;
+
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
+import gregtech.api.items.toolitem.behavior.IToolBehavior;
 
 public class TongsBehavior implements IToolBehavior {
 

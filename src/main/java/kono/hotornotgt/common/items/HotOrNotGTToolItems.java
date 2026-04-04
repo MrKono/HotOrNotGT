@@ -3,7 +3,6 @@ package kono.hotornotgt.common.items;
 import java.util.ArrayList;
 import java.util.List;
 
-import gregtech.api.items.toolitem.ToolHelper;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
@@ -13,6 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import gregtech.api.GTValues;
 import gregtech.api.items.toolitem.IGTTool;
 import gregtech.api.items.toolitem.ItemGTTool;
+import gregtech.api.items.toolitem.ToolHelper;
 import gregtech.api.unification.OreDictUnifier;
 
 import kono.hotornotgt.api.util.ModValues;
@@ -39,19 +39,22 @@ public class HotOrNotGTToolItems {
                 .toolClasses("tongs")
                 .build());
         TONGS_LV = register(ItemGTTool.Builder.of(ModValues.modId, "tongs_lv")
-                .toolStats(b -> b.durabilityMultiplier(1.5F).cannotAttack().behaviors(TongsBehavior.INSTANCE).brokenStack(ToolHelper.SUPPLY_POWER_UNIT_LV))
+                .toolStats(b -> b.durabilityMultiplier(1.5F).cannotAttack().behaviors(TongsBehavior.INSTANCE)
+                        .brokenStack(ToolHelper.SUPPLY_POWER_UNIT_LV))
                 .oreDict("toolTongs")
                 .toolClasses("tongs")
                 .electric(GTValues.LV)
                 .build());
         TONGS_HV = register(ItemGTTool.Builder.of(ModValues.modId, "tongs_hv")
-                .toolStats(b -> b.durabilityMultiplier(2.0F).cannotAttack().behaviors(TongsBehavior.INSTANCE).brokenStack(ToolHelper.SUPPLY_POWER_UNIT_HV))
+                .toolStats(b -> b.durabilityMultiplier(2.0F).cannotAttack().behaviors(TongsBehavior.INSTANCE)
+                        .brokenStack(ToolHelper.SUPPLY_POWER_UNIT_HV))
                 .oreDict("toolTongs")
                 .toolClasses("tongs")
                 .electric(GTValues.HV)
                 .build());
         TONGS_IV = register(ItemGTTool.Builder.of(ModValues.modId, "tongs_iv")
-                .toolStats(b -> b.durabilityMultiplier(4.0F).cannotAttack().behaviors(TongsBehavior.INSTANCE).brokenStack(ToolHelper.SUPPLY_POWER_UNIT_IV))
+                .toolStats(b -> b.durabilityMultiplier(4.0F).cannotAttack().behaviors(TongsBehavior.INSTANCE)
+                        .brokenStack(ToolHelper.SUPPLY_POWER_UNIT_IV))
                 .oreDict("toolTongs")
                 .toolClasses("tongs")
                 .electric(GTValues.IV)

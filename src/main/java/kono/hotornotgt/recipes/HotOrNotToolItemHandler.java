@@ -1,14 +1,16 @@
 package kono.hotornotgt.recipes;
 
-import gregtech.api.capability.GregtechCapabilities;
-import gregtech.api.capability.IElectricItem;
-import gregtech.api.items.toolitem.IGTTool;
-import gregtech.common.items.ToolItems;
+import static gregtech.loaders.recipe.handlers.ToolRecipeHandler.powerUnitItems;
+
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 
 import com.buuz135.hotornot.item.ModItems;
 
 import gregtech.api.GregTechAPI;
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IElectricItem;
+import gregtech.api.items.toolitem.IGTTool;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
@@ -19,9 +21,6 @@ import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.ConfigHolder;
 
 import kono.hotornotgt.common.items.HotOrNotGTToolItems;
-import net.minecraft.item.crafting.Ingredient;
-
-import static gregtech.loaders.recipe.handlers.ToolRecipeHandler.powerUnitItems;
 
 public class HotOrNotToolItemHandler {
 
@@ -71,7 +70,8 @@ public class HotOrNotToolItemHandler {
                     'S', OreDictUnifier.get(OrePrefix.screw, material),
                     'W', OreDictUnifier.get(OrePrefix.stick, material));
         }
-        addElectricTongsRecipe(material, new IGTTool[] {HotOrNotGTToolItems.TONGS_LV, HotOrNotGTToolItems.TONGS_HV, HotOrNotGTToolItems.TONGS_IV});
+        addElectricTongsRecipe(material, new IGTTool[] { HotOrNotGTToolItems.TONGS_LV, HotOrNotGTToolItems.TONGS_HV,
+                HotOrNotGTToolItems.TONGS_IV });
     }
 
     private static void addElectricTongsRecipe(Material material, IGTTool[] toolItems) {
@@ -82,14 +82,16 @@ public class HotOrNotToolItemHandler {
             ItemStack tool = toolItem.get(material, 0, powerUnit.getMaxCharge());
 
             if (ConfigHolder.recipes.hardToolArmorRecipes) {
-                ModHandler.addShapedEnergyTransferRecipe(String.format("%s_%s", toolItem.getToolId(), material.getName()), tool,
+                ModHandler.addShapedEnergyTransferRecipe(
+                        String.format("%s_%s", toolItem.getToolId(), material.getName()), tool,
                         Ingredient.fromStacks(powerUnitStack), true, true, "P P", "dSf", "WUW",
                         'P', OreDictUnifier.get(OrePrefix.plate, material),
                         'S', OreDictUnifier.get(OrePrefix.screw, material),
                         'U', powerUnitStack,
                         'W', OreDictUnifier.get(OrePrefix.stick, material));
             } else {
-                ModHandler.addShapedEnergyTransferRecipe(String.format("%s_%s", toolItem.getToolId(), material.getName()), tool,
+                ModHandler.addShapedEnergyTransferRecipe(
+                        String.format("%s_%s", toolItem.getToolId(), material.getName()), tool,
                         Ingredient.fromStacks(powerUnitStack), true, true, "P P", " S ", "WUW",
                         'P',
                         OreDictUnifier.get(material.hasProperty(PropertyKey.INGOT) ? OrePrefix.ingot : OrePrefix.gem,
