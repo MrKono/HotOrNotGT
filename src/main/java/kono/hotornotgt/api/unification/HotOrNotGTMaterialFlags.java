@@ -14,6 +14,9 @@ public class HotOrNotGTMaterialFlags {
             if (!material.hasFlag(MaterialFlags.GENERATE_BOLT_SCREW)) {
                 material.addFlags(MaterialFlags.GENERATE_BOLT_SCREW);
             }
+            if (!material.hasFlag(MaterialFlags.GENERATE_ROD)) {
+                material.addFlags(MaterialFlags.GENERATE_ROD);
+            }
         }
     }
 }

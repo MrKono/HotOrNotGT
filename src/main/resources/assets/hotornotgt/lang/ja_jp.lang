@@ -1,5 +1,8 @@
 ## Tools
 item.gt.tool.tongs.name=%s製火ばさみ
+item.gt.tool.tongs_lv.name=LVの%s製火ばさみ
+item.gt.tool.tongs_hv.name=HVの%s製火ばさみ
+item.gt.tool.tongs_iv.name=IVの%s製火ばさみ
 gt.tool.class.tongs=火ばさみ
 
 ## Tooltips

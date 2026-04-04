@@ -1,5 +1,8 @@
 ## Tools
 item.gt.tool.tongs.name=%s Tongs
+item.gt.tool.tongs_lv.name=%s Tongs (LV)
+item.gt.tool.tongs_hv.name=%s Tongs (HV)
+item.gt.tool.tongs_iv.name=%s Tongs (IV)
 gt.tool.class.tongs=Tongs
 
 ## Tooltips

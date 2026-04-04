@@ -27,7 +27,10 @@ import static kono.hotornotgt.api.util.ModValues.energyQ;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
+import gregtech.api.GTValues;
+import gregtech.api.items.toolitem.IGTTool;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -56,6 +59,7 @@ public class MixinServerTick {
             cancellable = true)
     private static void damageProtectionItemMixin(EntityPlayer player, CallbackInfoReturnable<Boolean> cir) {
         if (!cir.getReturnValueZ()) {
+            Random random = player == null ? GTValues.RNG : player.getRNG();
             ItemStack helm = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
             ItemStack chest = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
             ItemStack legs = player.getItemStackFromSlot(EntityEquipmentSlot.LEGS);
@@ -135,11 +139,45 @@ public class MixinServerTick {
                 }
             }
             if (player.getHeldItemOffhand().isItemEqual(HotOrNotGTToolItems.TONGS.getRaw())) {
-                if (HotConfig.DURABILITY_MITTS != 0) {
-                    player.getHeldItemOffhand().damageItem(HotConfig.ITEM_DAMAGE, player);
-                }
+                player.getHeldItemOffhand().damageItem(HotConfig.ITEM_DAMAGE, player);
                 cir.setReturnValue(true);
+            }
+            if (player.getHeldItemOffhand().isItemEqual(HotOrNotGTToolItems.TONGS_LV.getRaw())) {
+                if (tryAlternateByElectric(player.getHeldItemOffhand(), random)) {
+                    cir.setReturnValue(true);
+                } else {
+                    player.getHeldItemOffhand().damageItem(HotConfig.ITEM_DAMAGE, player);
+                    cir.setReturnValue(true);
+                }
+            }
+            if (player.getHeldItemOffhand().isItemEqual(HotOrNotGTToolItems.TONGS_HV.getRaw())) {
+                if (tryAlternateByElectric(player.getHeldItemOffhand(), random)) {
+                    cir.setReturnValue(true);
+                } else {
+                    player.getHeldItemOffhand().damageItem(HotConfig.ITEM_DAMAGE, player);
+                    cir.setReturnValue(true);
+                }
+            }
+            if (player.getHeldItemOffhand().isItemEqual(HotOrNotGTToolItems.TONGS_IV.getRaw())) {
+                if (tryAlternateByElectric(player.getHeldItemOffhand(), random)) {
+                    cir.setReturnValue(true);
+                } else {
+                    player.getHeldItemOffhand().damageItem(HotConfig.ITEM_DAMAGE, player);
+                    cir.setReturnValue(true);
+                }
             }
         }
     }
+
+    private static boolean tryAlternateByElectric(ItemStack stack, Random random) {
+        IGTTool tool = (IGTTool) stack.getItem();
+        int electricDamage = HotConfig.ITEM_DAMAGE * ConfigHolder.machines.energyUsageMultiplier;
+        IElectricItem electricItem = stack.getCapability(GregtechCapabilities.CAPABILITY_ELECTRIC_ITEM, null);
+        if (electricItem != null) {
+            electricItem.discharge(electricDamage, tool.getElectricTier(), true, false, false);
+            return electricItem.getCharge() > 0 && random.nextInt(100) >= ConfigHolder.tools.rngDamageElectricTools;
+        }
+        return false;
+    }
+
 }
