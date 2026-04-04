@@ -27,6 +27,7 @@ import static kono.hotornotgt.api.util.ModValues.energyQ;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -37,13 +38,17 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import com.buuz135.hotornot.config.HotConfig;
 import com.buuz135.hotornot.server.ServerTick;
 
+import gregtech.api.GTValues;
 import gregtech.api.capability.GregtechCapabilities;
 import gregtech.api.capability.IElectricItem;
+import gregtech.api.items.toolitem.IGTTool;
 import gregtech.common.ConfigHolder;
 
 import kono.hotornotgt.HotOtNotGTConfig;
+import kono.hotornotgt.common.items.HotOrNotGTToolItems;
 
 @Mixin(value = ServerTick.class, remap = false)
 public class MixinServerTick {
@@ -59,8 +64,8 @@ public class MixinServerTick {
             ItemStack legs = player.getItemStackFromSlot(EntityEquipmentSlot.LEGS);
             ItemStack feet = player.getItemStackFromSlot(EntityEquipmentSlot.FEET);
             List<ItemStack> armors = Arrays.asList(helm, chest, legs, feet);
+            // Nano Armor
             int nano = 0;
-            int quark = 0;
             if (HotOtNotGTConfig.feature.protectNano) {
                 if (HotOtNotGTConfig.nano.protectHelmet && isNanoHelm(helm)) {
                     nano++;
@@ -97,6 +102,8 @@ public class MixinServerTick {
                     cir.setReturnValue(true);
                 }
             }
+            // QuarkTech Armor
+            int quark = 0;
             if (HotOtNotGTConfig.feature.protectQuark) {
                 if (HotOtNotGTConfig.quark.protectHelmet && isQuarkHelm(helm)) {
                     quark++;
@@ -132,6 +139,35 @@ public class MixinServerTick {
                     cir.setReturnValue(true);
                 }
             }
+            // GregTech Tongs
+            Random random = player == null ? GTValues.RNG : player.getRNG();
+            ItemStack offhandStack = player.getHeldItemOffhand();
+            if (offhandStack.getItem() == HotOrNotGTToolItems.TONGS.get()) {
+                offhandStack.damageItem(HotConfig.ITEM_DAMAGE, player);
+                cir.setReturnValue(true);
+            }
+            if (offhandStack.getItem() == HotOrNotGTToolItems.TONGS_LV.get() ||
+                    offhandStack.getItem() == HotOrNotGTToolItems.TONGS_LV.get() ||
+                    offhandStack.getItem() == HotOrNotGTToolItems.TONGS_HV.get() ||
+                    offhandStack.getItem() == HotOrNotGTToolItems.TONGS_IV.get()) {
+                if (tryAlternateByElectric(offhandStack, random)) {
+                    cir.setReturnValue(true);
+                } else {
+                    offhandStack.damageItem(HotConfig.ITEM_DAMAGE, player);
+                    cir.setReturnValue(true);
+                }
+            }
         }
+    }
+
+    private static boolean tryAlternateByElectric(ItemStack stack, Random random) {
+        IGTTool tool = (IGTTool) stack.getItem();
+        int electricDamage = HotConfig.ITEM_DAMAGE * ConfigHolder.machines.energyUsageMultiplier;
+        IElectricItem electricItem = stack.getCapability(GregtechCapabilities.CAPABILITY_ELECTRIC_ITEM, null);
+        if (electricItem != null) {
+            electricItem.discharge(electricDamage, tool.getElectricTier(), true, false, false);
+            return electricItem.getCharge() > 0 && random.nextInt(100) >= ConfigHolder.tools.rngDamageElectricTools;
+        }
+        return false;
     }
 }

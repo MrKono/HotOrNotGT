@@ -1,4 +1,8 @@
 # Changelog
+### 1.4.0-beta
+- Add Greg's Tongs (Of course, electric ones too)
+---
+
 ### 1.3.0-beta
 - Updated MixinBooter from v9.1 to v10.6
 ---

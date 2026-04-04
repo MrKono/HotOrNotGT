@@ -1,3 +1,11 @@
+## Tools
+item.gt.tool.tongs.name=%s製火ばさみ
+item.gt.tool.tongs_lv.name=LVの%s製火ばさみ
+item.gt.tool.tongs_hv.name=HVの%s製火ばさみ
+item.gt.tool.tongs_iv.name=IVの%s製火ばさみ
+gt.tool.class.tongs=火ばさみ
+
+## Tooltips
 hotornotgt.full_set=フル装備ボーナス: HotOrNotの効果を防ぐ
 hotornotgt.not_full_set=装備するとHotOrNotの効果を防ぐ
 hotornotgt.required_energy=効果を防ぐには§e%s EU§7以上の充電が必要

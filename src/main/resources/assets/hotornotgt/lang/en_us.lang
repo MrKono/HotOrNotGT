@@ -1,3 +1,11 @@
+## Tools
+item.gt.tool.tongs.name=%s Tongs
+item.gt.tool.tongs_lv.name=%s Tongs (LV)
+item.gt.tool.tongs_hv.name=%s Tongs (HV)
+item.gt.tool.tongs_iv.name=%s Tongs (IV)
+gt.tool.class.tongs=Tongs
+
+## Tooltips
 hotornotgt.full_set=Full set bonus: Avoid bad HotOrNot's effect
 hotornotgt.not_full_set=Wear to avoid HotOrNot's effects
 hotornotgt.required_energy=Requires a charge of §e%s EU§7 or more to avoid effect
