@@ -30,7 +30,7 @@ public class HotOrNotGTToolItems {
 
     public static void init() {
         TONGS = register(ItemGTTool.Builder.of(ModValues.modId, "tongs")
-                .toolStats(b -> b.durabilityMultiplier(0.5F).cannotAttack())
+                .toolStats(b -> b.durabilityMultiplier(2.0F).cannotAttack().behaviors(TongsBehavior.INSTANCE))
                 .oreDict("toolTongs")
                 .toolClasses("tongs")
                 .build());
