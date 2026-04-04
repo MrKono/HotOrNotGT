@@ -59,14 +59,13 @@ public class MixinServerTick {
             cancellable = true)
     private static void damageProtectionItemMixin(EntityPlayer player, CallbackInfoReturnable<Boolean> cir) {
         if (!cir.getReturnValueZ()) {
-            Random random = player == null ? GTValues.RNG : player.getRNG();
             ItemStack helm = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
             ItemStack chest = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
             ItemStack legs = player.getItemStackFromSlot(EntityEquipmentSlot.LEGS);
             ItemStack feet = player.getItemStackFromSlot(EntityEquipmentSlot.FEET);
             List<ItemStack> armors = Arrays.asList(helm, chest, legs, feet);
+            // Nano Armor
             int nano = 0;
-            int quark = 0;
             if (HotOtNotGTConfig.feature.protectNano) {
                 if (HotOtNotGTConfig.nano.protectHelmet && isNanoHelm(helm)) {
                     nano++;
@@ -103,6 +102,8 @@ public class MixinServerTick {
                     cir.setReturnValue(true);
                 }
             }
+            // QuarkTech Armor
+            int quark = 0;
             if (HotOtNotGTConfig.feature.protectQuark) {
                 if (HotOtNotGTConfig.quark.protectHelmet && isQuarkHelm(helm)) {
                     quark++;
@@ -138,31 +139,21 @@ public class MixinServerTick {
                     cir.setReturnValue(true);
                 }
             }
-            if (player.getHeldItemOffhand().isItemEqual(HotOrNotGTToolItems.TONGS.getRaw())) {
-                player.getHeldItemOffhand().damageItem(HotConfig.ITEM_DAMAGE, player);
+            // GregTech Tongs
+            Random random = player == null ? GTValues.RNG : player.getRNG();
+            ItemStack offhandStack = player.getHeldItemOffhand();
+            if (offhandStack.getItem() == HotOrNotGTToolItems.TONGS.get()) {
+                offhandStack.damageItem(HotConfig.ITEM_DAMAGE, player);
                 cir.setReturnValue(true);
             }
-            if (player.getHeldItemOffhand().isItemEqual(HotOrNotGTToolItems.TONGS_LV.getRaw())) {
-                if (tryAlternateByElectric(player.getHeldItemOffhand(), random)) {
+            if (offhandStack.getItem() == HotOrNotGTToolItems.TONGS_LV.get() ||
+                    offhandStack.getItem() == HotOrNotGTToolItems.TONGS_LV.get() ||
+                    offhandStack.getItem() == HotOrNotGTToolItems.TONGS_HV.get() ||
+                    offhandStack.getItem() == HotOrNotGTToolItems.TONGS_IV.get()) {
+                if (tryAlternateByElectric(offhandStack, random)) {
                     cir.setReturnValue(true);
                 } else {
-                    player.getHeldItemOffhand().damageItem(HotConfig.ITEM_DAMAGE, player);
-                    cir.setReturnValue(true);
-                }
-            }
-            if (player.getHeldItemOffhand().isItemEqual(HotOrNotGTToolItems.TONGS_HV.getRaw())) {
-                if (tryAlternateByElectric(player.getHeldItemOffhand(), random)) {
-                    cir.setReturnValue(true);
-                } else {
-                    player.getHeldItemOffhand().damageItem(HotConfig.ITEM_DAMAGE, player);
-                    cir.setReturnValue(true);
-                }
-            }
-            if (player.getHeldItemOffhand().isItemEqual(HotOrNotGTToolItems.TONGS_IV.getRaw())) {
-                if (tryAlternateByElectric(player.getHeldItemOffhand(), random)) {
-                    cir.setReturnValue(true);
-                } else {
-                    player.getHeldItemOffhand().damageItem(HotConfig.ITEM_DAMAGE, player);
+                    offhandStack.damageItem(HotConfig.ITEM_DAMAGE, player);
                     cir.setReturnValue(true);
                 }
             }
